@@ -6,6 +6,6 @@ export default class Section extends Component {
     }
     //event handlers
     render() {
-        return <p>Subject component</p>;
+        return (<p>{this.props.subject}</p>);
     }
 }

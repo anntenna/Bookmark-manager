@@ -42,7 +42,9 @@ class App extends Component {
     return (
       <div>
         Parent Component
-        <Subject />
+        <Subject subject={this.state.sections[0].subject} />
+        <Subject subject={this.state.sections[1].subject} />
+        <Subject subject={this.state.sections[2].subject} />
       </div>
     );
   }
