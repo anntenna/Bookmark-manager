@@ -33,6 +33,16 @@ class App extends Component {
             {title: "Mindspace React Tutorial", url: "https://www.youtube.com/watch?v=JPT3bFIwJYA&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS"},
             {title: "LearnCode Academy React Tutorial", url: "https://youtu.be/fd2Cayhez58"}
           ]
+        },
+        {
+          subject: "Events in React",
+          resources: [
+            {title: "Handling Events - React", url: "https://facebook.github.io/react/docs/handling-events.html" },
+            {title: "React Stateless Functional Components", url: "https://medium.com/@housecor/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc#.jblm2w9dp"},
+            {title: "YouTube - ReactJS Basics - #7 Events & ReactJS", url: "https://www.youtube.com/watch?v=OcM__8q6p4c&list=PL55RiY5tL51oyA8euSROLjMFZbXaV7skS&index=8"},
+            {title: "Understanding JavaScript’s Function.prototype.bind", url: "https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/"},
+            {title: "REACT JS TUTORIAL #5 - Javascript Events & Data Changes in React", url: "https://www.youtube.com/watch?v=_D1JGNidMr4&feature=youtu.be"}
+          ]
         }
       ]
     };
