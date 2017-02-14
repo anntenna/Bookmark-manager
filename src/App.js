@@ -53,7 +53,7 @@ class App extends Component {
       <div>
         Parent Component
         {this.state.sections.map(section => {
-          return (<Subject items={section} />);
+          return (<Subject key={section.subject} items={section} />);
         })}
       </div>
     );
