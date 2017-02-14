@@ -41,6 +41,15 @@ export default class Section extends Component {
         });
         e.preventDefault();
     }
+
+    handleAddClick = (e) => {
+        const subject = this.props.items.subject;
+        let resource = {
+            title: this.state.newResourceTitle,
+            url: this.state.newResourceURL
+        }
+        this.props.addResource(subject, resource);
+    }
     //event handlers
     render() {
         return (
@@ -58,9 +67,9 @@ export default class Section extends Component {
                             </li>);
                     })}
                 </ul>
-                <label htmlFor="newResourceTitle"><i className="fa fa-plus" aria-hidden="true"></i>  </label>{' '}
                 <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{' '}
-                <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>
+                <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>{' '}
+                <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
             );
     }

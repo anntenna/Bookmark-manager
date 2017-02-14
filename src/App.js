@@ -47,13 +47,25 @@ class App extends Component {
       ]
     };
   }
+
+  addResourceToSections = (childSubject, childResource) => {
+    let allSections = this.state.sections;
+    let thisSection = allSections.filter((section) => section.subject === childSubject)[0];
+    
+    thisSection.resources.push(childResource);
+
+    this.setState({
+      sections: allSections
+    });
+
+  }
   //event handlers
   render() {
     return (
       <div className="container">
         Parent Component
         {this.state.sections.map(section => {
-          return (<Subject key={section.subject} items={section} />);
+          return (<Subject key={section.subject} items={section} addResource={this.addResourceToSections.bind(this)}/>);
         })}
       </div>
     );
