@@ -7,6 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
+      headerInput: '',
       sections: [
         { 
           subject: "Functional Programming Basics",
@@ -59,11 +60,42 @@ class App extends Component {
     });
 
   }
+
+  addSectionToState = e => {
+    let allSections = this.state.sections;
+    let newSection = {
+      subject: this.state.headerInput,
+      resources: []
+    };
+    console.log(newSection);
+    
+    allSections.unshift(newSection);
+    console.log(allSections);
+
+    this.setState({
+      sections: allSections,
+      headerInput: ''
+    });
+
+    e.preventDefault();
+  }
+
+  handleTyping = e => {
+    this.setState({
+      headerInput: e.target.value
+    })
+    e.preventDefault();
+  }
   //event handlers
   render() {
     return (
       <div className="container">
-        Parent Component
+        <div className="form-group">
+          <input type="text" value={this.state.headerInput} onChange={this.handleTyping.bind(this)} placeholder="Add a section..."/>{'  '}
+          <button className="btn btn-primary" onClick={this.addSectionToState.bind(this)}>
+            <i className="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
         {this.state.sections.map(section => {
           return (<Subject key={section.subject} items={section} addResource={this.addResourceToSections.bind(this)}/>);
         })}

@@ -49,6 +49,10 @@ export default class Section extends Component {
             url: this.state.newResourceURL
         }
         this.props.addResource(subject, resource);
+        this.setState({
+            newResourceTitle: '',
+            newResourceURL: ''
+        })
     }
     //event handlers
     render() {
@@ -66,8 +70,8 @@ export default class Section extends Component {
                     })}
             </ul>
             <div className="form-group"> 
-                            <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>
-                            <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>
+                            <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{'  '}
+                            <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>{'  '}
                             <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>
