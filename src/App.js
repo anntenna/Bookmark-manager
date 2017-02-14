@@ -50,7 +50,7 @@ class App extends Component {
   //event handlers
   render() {
     return (
-      <div>
+      <div className="container">
         Parent Component
         {this.state.sections.map(section => {
           return (<Subject key={section.subject} items={section} />);

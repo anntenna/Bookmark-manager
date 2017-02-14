@@ -8,7 +8,10 @@ export default class Section extends Component {
          this.state = {
              classIndex: "text-primary",
              classNames: ["text-primary", "bg-primary", "bg-success", "bg-info", "bg-warning", "bg-danger"],
-             showLink: false
+             showLink: false,
+             newResourceTitle: '',
+             newResourceURL: '',
+
          }
              
     };
@@ -20,13 +23,23 @@ export default class Section extends Component {
     }
 
 
-    changeBackground() {
+    changeBackground = () => {
         //console.log(this.state.classNames.length);
         this.setState({
             classIndex: this.state.classIndex < this.state.classNames.length - 1 ? this.state.classIndex + 1 : 0
         })
 
         
+    }
+
+    handleTyping = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        this.setState({
+            [name]: value
+        });
+        e.preventDefault();
     }
     //event handlers
     render() {
@@ -45,6 +58,9 @@ export default class Section extends Component {
                             </li>);
                     })}
                 </ul>
+                <label htmlFor="newResourceTitle"><i className="fa fa-plus" aria-hidden="true"></i>  </label>{' '}
+                <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{' '}
+                <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>
             </div>
             );
     }
