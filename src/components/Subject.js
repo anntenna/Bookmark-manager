@@ -8,7 +8,7 @@ export default class Section extends Component {
          this.state = {
              classIndex: "text-primary",
              classNames: ["text-primary", "bg-primary", "bg-success", "bg-info", "bg-warning", "bg-danger"],
-             showLink: false,
+             showLinks: true,
              newResourceTitle: '',
              newResourceURL: '',
 
@@ -16,21 +16,21 @@ export default class Section extends Component {
              
     };
     
-    showLinkToggle = prevState => {
-        this.setState({
-            showLink: !prevState.showLink
+    handleLinkToggle = () => {
+        this.setState(prevState => {
+            return {showLinks: !prevState.showLinks};
         });
     }
 
 
-    changeBackground = () => {
-        //console.log(this.state.classNames.length);
-        this.setState({
-            classIndex: this.state.classIndex < this.state.classNames.length - 1 ? this.state.classIndex + 1 : 0
-        })
+    // changeBackground = () => {
+    //     //console.log(this.state.classNames.length);
+    //     this.setState({
+    //         classIndex: this.state.classIndex < this.state.classNames.length - 1 ? this.state.classIndex + 1 : 0
+    //     })
 
         
-    }
+    // }
 
     handleTyping = (e) => {
         const name = e.target.name;
@@ -52,25 +52,30 @@ export default class Section extends Component {
     }
     //event handlers
     render() {
+        let heading = <h2><span onClick={this.handleLinkToggle.bind(this)}>{this.props.items.subject}</span></h2>;
+        let content = 
+        <div hidden={this.state.showLinks}>
+            <ul>
+                {this.props.items.resources.map(resource => {
+                    return (
+                        <li key={resource.title + resource.url}>
+                            <a href={resource.url}>
+                                {resource.title}
+                            </a>
+                        </li>);
+                    })}
+            </ul>
+            <div className="form-group"> 
+                            <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>
+                            <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>
+                            <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
         return (
             <div>
-                <h2><span onClick={() => this.changeBackground()}>{this.props.items.subject}</span></h2>
-                <ul>
-                    {this.props.items.resources.map(resource => {
-                        
-                        return (
-                            <li key={resource.title + resource.url}>
-                                <a href={resource.url} className={this.state.classNames[this.state.classIndex]}>
-                                    {resource.title}
-                                </a>
-                                
-                            </li>);
-                    })}
-                </ul>
-                <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{' '}
-                <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>{' '}
-                <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                {heading}
+                {content}
             </div>
-            );
+        );
     }
 }
