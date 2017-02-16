@@ -67,10 +67,10 @@ class App extends Component {
       subject: this.state.headerInput,
       resources: []
     };
-    console.log(newSection);
+    // console.log(newSection);
     
     allSections.unshift(newSection);
-    console.log(allSections);
+    // console.log(allSections);
 
     this.setState({
       sections: allSections,
@@ -90,15 +90,18 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="form-group">
-          <input type="text" value={this.state.headerInput} onChange={this.handleTyping.bind(this)} placeholder="Add a section..."/>{'  '}
-          <button className="btn btn-primary" onClick={this.addSectionToState.bind(this)}>
-            <i className="fa fa-plus" aria-hidden="true"></i>
-          </button>
+        <h1>Anusha's Bookmark Manager</h1>
+        <div className="panel panel-default">
+          <div className="panel-body">
+            <input type="text" value={this.state.headerInput} onChange={this.handleTyping.bind(this)} placeholder="Add a section..."/>{'  '}
+            <button className="btn btn-primary" onClick={this.addSectionToState.bind(this)}>
+              <i className="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            {this.state.sections.map(section => {
+              return (<Subject key={section.subject} items={section} addResource={this.addResourceToSections.bind(this)}/>);
+            })}
+          </div>
         </div>
-        {this.state.sections.map(section => {
-          return (<Subject key={section.subject} items={section} addResource={this.addResourceToSections.bind(this)}/>);
-        })}
       </div>
     );
   }

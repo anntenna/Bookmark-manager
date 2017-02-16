@@ -56,7 +56,7 @@ export default class Section extends Component {
     }
     //event handlers
     render() {
-        let heading = <h2><span onClick={this.handleLinkToggle.bind(this)}>{this.props.items.subject}</span></h2>;
+        let heading = <h3><span onClick={this.handleLinkToggle.bind(this)}>{this.props.items.subject}</span></h3>;
         let content = 
         <div hidden={this.state.showLinks}>
             <ul>
