@@ -44,11 +44,11 @@ export default class Section extends Component {
 
     handleAddClick = (e) => {
         const index = this.props.index;
-        let resource = {
+        const resource = {
             title: this.state.title,
             url: this.state.url
         }
-        this.props.addResource(index, resource);
+        this.props.addResource({index, resource});
         this.setState({
             title: '',
             url: ''

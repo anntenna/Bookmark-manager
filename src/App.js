@@ -47,33 +47,41 @@ class App extends Component {
         }
       ]
     };
+
+    //bind event handlers and internal functions
+    this.updateSection = this.updateSection.bind(this);
+    this.handleTyping = this.handleTyping.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  addResourceToSections = (index, resource) => {
+  updateSection = ({subject, index, resource}) => {
+    console.log(subject, index, resource);
+
     let allSections = this.state.sections;
-    let thisSection = allSections[index];
-    
-    thisSection.resources.push(resource);
+    if(subject !== undefined) {
+      let newSection = {
+        subject: subject,
+        resources: []
+      }
+      allSections.unshift(newSection);
+    }
+    else {
+      let thisSection = allSections[index];
+      thisSection.resources.push(resource);
+    }
 
     this.setState({
       sections: allSections
     });
 
+
   }
 
-  addSectionToState = e => {
-    let allSections = this.state.sections;
-    let newSection = {
-      subject: this.state.headerInput,
-      resources: []
-    };
-    // console.log(newSection);
+  handleSubmit = e => {
+    this.updateSection({subject: this.state.headerInput});
     
-    allSections.unshift(newSection);
-    // console.log(allSections);
-
     this.setState({
-      sections: allSections,
       headerInput: ''
     });
 
@@ -93,12 +101,12 @@ class App extends Component {
         <h1>Anusha's Bookmark Manager</h1>
         <div className="panel panel-default">
           <div className="panel-body">
-            <input type="text" value={this.state.headerInput} onChange={this.handleTyping.bind(this)} placeholder="Add a section..."/>{'  '}
-            <button className="btn btn-primary" onClick={this.addSectionToState.bind(this)}>
+            <input type="text" value={this.state.headerInput} onChange={this.handleTyping} placeholder="Add a section..."/>{'  '}
+            <button className="btn btn-primary" onClick={this.handleSubmit}>
               <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
             {this.state.sections.map((section, index) => {
-              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.addResourceToSections.bind(this)}/>);
+              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.updateSection}/>);
             })}
           </div>
         </div>
