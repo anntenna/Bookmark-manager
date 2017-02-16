@@ -49,11 +49,11 @@ class App extends Component {
     };
   }
 
-  addResourceToSections = (childSubject, childResource) => {
+  addResourceToSections = (index, resource) => {
     let allSections = this.state.sections;
-    let thisSection = allSections.filter((section) => section.subject === childSubject)[0];
+    let thisSection = allSections[index];
     
-    thisSection.resources.push(childResource);
+    thisSection.resources.push(resource);
 
     this.setState({
       sections: allSections
@@ -97,8 +97,8 @@ class App extends Component {
             <button className="btn btn-primary" onClick={this.addSectionToState.bind(this)}>
               <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
-            {this.state.sections.map(section => {
-              return (<Subject key={section.subject} items={section} addResource={this.addResourceToSections.bind(this)}/>);
+            {this.state.sections.map((section, index) => {
+              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.addResourceToSections.bind(this)}/>);
             })}
           </div>
         </div>

@@ -9,8 +9,8 @@ export default class Section extends Component {
              classIndex: "text-primary",
              classNames: ["text-primary", "bg-primary", "bg-success", "bg-info", "bg-warning", "bg-danger"],
              showLinks: true,
-             newResourceTitle: '',
-             newResourceURL: '',
+             title: '',
+             url: '',
 
          }
              
@@ -43,15 +43,15 @@ export default class Section extends Component {
     }
 
     handleAddClick = (e) => {
-        const subject = this.props.items.subject;
+        const index = this.props.index;
         let resource = {
-            title: this.state.newResourceTitle,
-            url: this.state.newResourceURL
+            title: this.state.title,
+            url: this.state.url
         }
-        this.props.addResource(subject, resource);
+        this.props.addResource(index, resource);
         this.setState({
-            newResourceTitle: '',
-            newResourceURL: ''
+            title: '',
+            url: ''
         })
     }
     //event handlers
@@ -70,9 +70,9 @@ export default class Section extends Component {
                     })}
             </ul>
             <div className="form-group"> 
-                            <input type="text" name="newResourceTitle" value={this.state.newResourceTitle} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{'  '}
-                            <input type="text" name="newResourceURL" value={this.state.newResourceURL} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>{'  '}
-                            <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                <input type="text" name="title" value={this.state.title} onChange={this.handleTyping.bind(this)} placeholder="Add a title..."/>{'  '}
+                <input type="text" name="url" value={this.state.url} onChange={this.handleTyping.bind(this)} placeholder="Add a URL..."/>{'  '}
+                <button className="btn btn-primary" onClick={this.handleAddClick.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>
         return (
