@@ -56,8 +56,7 @@ class App extends Component {
   }
 
   updateSection = ({subject, index, resource}) => {
-    console.log(subject, index, resource);
-
+    
     let allSections = this.state.sections;
     if(subject !== undefined) {
       let newSection = {
