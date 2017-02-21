@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Subject from "./components/Subject.js"
+import Color from "./components/Color.js"
 
 
 class App extends Component {
@@ -94,14 +95,16 @@ class App extends Component {
     e.preventDefault();
   }
   //event handlers
+  
   render() {
     return (
       <div className="container">
         <h1>Anusha's Bookmark Manager</h1>
         <div className="panel panel-default">
           <div className="panel-body">
+            {/*<Color/>*/}
             <input type="text" value={this.state.headerInput} onChange={this.handleTyping} placeholder="Add a section..."/>{'  '}
-            <button className="btn btn-primary" onClick={this.handleSubmit}>
+            <button className="btn btn-default" onClick={this.handleSubmit}>
               <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
             {this.state.sections.map((section, index) => {

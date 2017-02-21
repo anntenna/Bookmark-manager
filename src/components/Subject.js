@@ -67,7 +67,7 @@ export default class Section extends Component {
             <div className="form-group"> 
                 <input type="text" name="title" value={this.state.title} onChange={this.handleTyping} placeholder="Add a title..."/>{'  '}
                 <input type="text" name="url" value={this.state.url} onChange={this.handleTyping} placeholder="Add a URL..."/>{'  '}
-                <button className="btn btn-primary" onClick={this.handleAddClick}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                <button className="btn btn-default" onClick={this.handleAddClick}><i className="fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>;
         return (
