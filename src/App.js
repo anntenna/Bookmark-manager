@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Subject from "./components/Subject.js"
+import NewSubject from "./components/NewSubject.js"
 import Color from "./components/Color.js"
 
 
@@ -8,7 +9,6 @@ class App extends Component {
     super();
 
     this.state = {
-      headerInput: '',
       sections: [
         { 
           subject: "Functional Programming Basics",
@@ -48,65 +48,56 @@ class App extends Component {
         }
       ]
     };
-
+    
     //bind event handlers and internal functions
-    this.updateSection = this.updateSection.bind(this);
-    this.handleTyping = this.handleTyping.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
+    this.updateSubject = this.updateSubject.bind(this);
   }
 
-  updateSection = ({subject, index, resource}) => {
+  //event handlers
+  
+    //   updateSection = ({subject, index, resource}) => {
     
-    const allSections = this.state.sections;
-    if(subject !== undefined) {
-      const newSection = {
+    //     const allSections = this.state.sections;
+    //     if(subject !== undefined) {
+    //     const newSection = {
+    //         subject: subject,
+    //         resources: []
+    //     }
+    //     allSections.unshift(newSection);
+    //     }
+    //     else {
+    //     const thisSection = allSections[index];
+    //     thisSection.resources.push(resource);
+    //     }
+
+    //     this.setState({
+    //     sections: allSections
+    //     });
+
+
+    // }
+
+    updateSubject(subject) {
+      const newSubject = {
         subject: subject,
         resources: []
       }
-      allSections.unshift(newSection);
+      const tempResources = this.state.resources;
+      tempResources.push(newSubject);
+
+      this.setState({
+        resources: tempResources
+      });
     }
-    else {
-      const thisSection = allSections[index];
-      thisSection.resources.push(resource);
-    }
-
-    this.setState({
-      sections: allSections
-    });
-
-
-  }
-
-  handleSubmit = e => {
-    this.updateSection({subject: this.state.headerInput});
     
-    this.setState({
-      headerInput: ''
-    });
 
-    e.preventDefault();
-  }
-
-  handleTyping = e => {
-    this.setState({
-      headerInput: e.target.value
-    })
-    e.preventDefault();
-  }
-  //event handlers
-  
   render() {
     return (
       <div className="container">
         <h1>Anusha's Bookmark Manager</h1>
         <div className="panel panel-default">
           <div className="panel-body">
-            {/*<Color/>*/}
-            <input type="text" value={this.state.headerInput} onChange={this.handleTyping} placeholder="Add a section..."/>{'  '}
-            <button className="btn btn-default" onClick={this.handleSubmit}>
-              <i className="fa fa-plus" aria-hidden="true"></i>
-            </button>
+            <NewSubject newSubject={this.updateSection}/>
             {this.state.sections.map((section, index) => {
               return (<Subject key={section.subject + index} index={index} items={section} addResource={this.updateSection}/>);
             })}
