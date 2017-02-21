@@ -57,16 +57,16 @@ class App extends Component {
 
   updateSection = ({subject, index, resource}) => {
     
-    let allSections = this.state.sections;
+    const allSections = this.state.sections;
     if(subject !== undefined) {
-      let newSection = {
+      const newSection = {
         subject: subject,
         resources: []
       }
       allSections.unshift(newSection);
     }
     else {
-      let thisSection = allSections[index];
+      const thisSection = allSections[index];
       thisSection.resources.push(resource);
     }
 
