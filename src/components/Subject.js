@@ -51,13 +51,25 @@ export default class Section extends Component {
     }
     //event handlers
     render() {
-        let heading = <h3><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
-        let content = 
+        const ulStyle = {
+            'list-style': 'none',
+            padding: 0
+        }
+        const liStyle = {
+            'padding-left': '20px'
+        }
+        const iStyle = {
+            'padding': '5px'
+        }
+        
+        const heading = <h3><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
+        const content = 
         <div hidden={this.state.showLinks}>
-            <ul>
+            <ul style={ulStyle}>
                 {this.props.items.resources.map(resource => {
                     return (
-                        <li key={resource.title + resource.url}>
+                        <li style={liStyle} key={resource.title + resource.url} >
+                            <i className="fa fa-times" aria-hidden="true" style={iStyle}></i>
                             <a href={resource.url}>
                                 {resource.title}
                             </a>

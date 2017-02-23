@@ -58,30 +58,30 @@ class App extends Component {
 
   //event handlers
   
-    updateSections = (newSections) => {
-        this.setState({
-          sections: newSections
-        });
-    }
+  updateSections = (newSections) => {
+      this.setState({
+        sections: newSections
+      });
+  }
 
-    updateSubject(subject) {
-      const newSubject = {
-        subject: subject,
-        resources: []
-      }
-      const tempResources = this.state.sections;
-      tempResources.push(newSubject);
-
-      this.updateSections(tempResources);
-      
+  updateSubject(subject) {
+    const newSubject = {
+      subject: subject,
+      resources: []
     }
+    const tempResources = this.state.sections;
+    tempResources.push(newSubject);
 
-    updateResource(index, resource) {
-      const tempResources = this.state.sections;
-      
-      tempResources[index].resources.push(resource);
-      this.updateSections(tempResources);
-    }
+    this.updateSections(tempResources);
+    
+  }
+
+  updateResource(index, resource) {
+    const tempResources = this.state.sections;
+    
+    tempResources[index].resources.push(resource);
+    this.updateSections(tempResources);
+  }
     
 
   render() {
