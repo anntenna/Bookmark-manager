@@ -77,6 +77,11 @@ export default class Section extends Component {
         const heading = <h3><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
         const content = 
         <div hidden={this.state.showLinks}>
+            <div className="form-group"> 
+                <input type="text" name="title" value={this.state.title} onChange={this.handleTyping} placeholder="Add a title..."/>{'  '}
+                <input type="text" name="url" value={this.state.url} onChange={this.handleTyping} placeholder="Add a URL..."/>{'  '}
+                <button className="btn btn-default" onClick={this.handleAddClick}><i className="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
             <ul style={ulStyle}>
                 {this.props.items.resources.map((resource, index) => {
                     return (
@@ -88,11 +93,6 @@ export default class Section extends Component {
                         </li>);
                     })}
             </ul>
-            <div className="form-group"> 
-                <input type="text" name="title" value={this.state.title} onChange={this.handleTyping} placeholder="Add a title..."/>{'  '}
-                <input type="text" name="url" value={this.state.url} onChange={this.handleTyping} placeholder="Add a URL..."/>{'  '}
-                <button className="btn btn-default" onClick={this.handleAddClick}><i className="fa fa-plus" aria-hidden="true"></i></button>
-            </div>
         </div>;
         return (
             <div>

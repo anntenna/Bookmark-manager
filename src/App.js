@@ -70,7 +70,7 @@ class App extends Component {
       resources: []
     }
     const tempResources = this.state.sections;
-    tempResources.push(newSubject);
+    tempResources.unshift(newSubject);
 
     this.updateSections(tempResources);
     
@@ -79,7 +79,7 @@ class App extends Component {
   updateResource(index, resource) {
     const tempResources = this.state.sections;
     
-    tempResources[index].resources.push(resource);
+    tempResources[index].resources.unshift(resource);
     this.updateSections(tempResources);
   }
 
