@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Subject from "./components/Subject.js"
 import NewSubject from "./components/NewSubject.js"
-import Color from "./components/Color.js"
+
 
 
 class App extends Component {
@@ -52,6 +52,7 @@ class App extends Component {
     //bind event handlers and internal functions
     this.updateSubject = this.updateSubject.bind(this);
     this.updateResource = this.updateResource.bind(this);
+    this.updateSections = this.updateSections.bind(this);
     
   }
 
@@ -71,7 +72,7 @@ class App extends Component {
       const tempResources = this.state.sections;
       tempResources.push(newSubject);
 
-      updateSections(tempResources);
+      this.updateSections(tempResources);
       
     }
 
@@ -79,7 +80,7 @@ class App extends Component {
       const tempResources = this.state.sections;
       
       tempResources[index].resources.push(resource);
-      updateSections(tempResources);
+      this.updateSections(tempResources);
     }
     
 
