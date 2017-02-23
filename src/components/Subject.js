@@ -55,7 +55,8 @@ export default class Section extends Component {
     handleDeleteClick = (e) => {
         const subjectIndex = this.props.index;
         const resourceIndex = e.target.id;
-        console.log(subjectIndex, resourceIndex);
+        //console.log(subjectIndex, resourceIndex);
+        this.props.deleteResource(subjectIndex, resourceIndex);
         //debugger;
 
     }

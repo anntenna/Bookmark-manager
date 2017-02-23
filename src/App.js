@@ -82,6 +82,14 @@ class App extends Component {
     tempResources[index].resources.push(resource);
     this.updateSections(tempResources);
   }
+
+  deleteResource = (subjectIndex, resourceIndex) => {
+    const tempResources = this.state.sections;
+    tempResources[subjectIndex].resources.splice(resourceIndex, 1);
+
+    this.updateSections(tempResources);
+    //debugger;
+  }
     
 
   render() {
@@ -92,7 +100,12 @@ class App extends Component {
           <div className="panel-body">
             <NewSubject addSubject={this.updateSubject}/>
             {this.state.sections.map((section, index) => {
-              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.updateResource}/>);
+              return (
+                <Subject key={section.subject + index} 
+                  index={index} items={section} 
+                  addResource={this.updateResource}
+                  deleteResource = {this.deleteResource}
+                  />);
             })}
           </div>
         </div>
