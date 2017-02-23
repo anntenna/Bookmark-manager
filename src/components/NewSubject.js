@@ -18,7 +18,7 @@ export default class NewSubject extends Component {
 handleSubmit = e => {
 e.preventDefault();
 
-this.props.newSubject(this.state.headerInput);
+this.props.addSubject(this.state.headerInput);
 
 this.setState({
     headerInput: ''

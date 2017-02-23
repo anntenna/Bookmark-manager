@@ -51,6 +51,7 @@ class App extends Component {
     
     //bind event handlers and internal functions
     this.updateSubject = this.updateSubject.bind(this);
+    this.updateResource = this.updateResource.bind(this);
   }
 
   //event handlers
@@ -82,12 +83,20 @@ class App extends Component {
         subject: subject,
         resources: []
       }
-      const tempResources = this.state.resources;
+      const tempResources = this.state.sections;
       tempResources.push(newSubject);
 
       this.setState({
         resources: tempResources
       });
+    }
+
+    updateResource(subject, resource) {
+      const tempResource = this.state.sections;
+      console.log(tempResource, subject);
+      //debugger;
+      tempResource[subject].resources.push(resource);
+      this.setState(tempResource);
     }
     
 
@@ -97,9 +106,9 @@ class App extends Component {
         <h1>Anusha's Bookmark Manager</h1>
         <div className="panel panel-default">
           <div className="panel-body">
-            <NewSubject newSubject={this.updateSection}/>
+            <NewSubject addSubject={this.updateSubject}/>
             {this.state.sections.map((section, index) => {
-              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.updateSection}/>);
+              return (<Subject key={section.subject + index} index={index} items={section} addResource={this.updateResource}/>);
             })}
           </div>
         </div>

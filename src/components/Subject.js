@@ -43,7 +43,7 @@ export default class Section extends Component {
             title: this.state.title,
             url: this.state.url
         }
-        this.props.addResource({index, resource});
+        this.props.addResource(index, resource);
         this.setState({
             title: '',
             url: ''
