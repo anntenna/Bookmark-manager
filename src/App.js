@@ -52,31 +52,16 @@ class App extends Component {
     //bind event handlers and internal functions
     this.updateSubject = this.updateSubject.bind(this);
     this.updateResource = this.updateResource.bind(this);
+    
   }
 
   //event handlers
   
-    //   updateSection = ({subject, index, resource}) => {
-    
-    //     const allSections = this.state.sections;
-    //     if(subject !== undefined) {
-    //     const newSection = {
-    //         subject: subject,
-    //         resources: []
-    //     }
-    //     allSections.unshift(newSection);
-    //     }
-    //     else {
-    //     const thisSection = allSections[index];
-    //     thisSection.resources.push(resource);
-    //     }
-
-    //     this.setState({
-    //     sections: allSections
-    //     });
-
-
-    // }
+    updateSections = (newSections) => {
+        this.setState({
+          sections: newSections
+        });
+    }
 
     updateSubject(subject) {
       const newSubject = {
@@ -86,17 +71,15 @@ class App extends Component {
       const tempResources = this.state.sections;
       tempResources.push(newSubject);
 
-      this.setState({
-        resources: tempResources
-      });
+      updateSections(tempResources);
+      
     }
 
-    updateResource(subject, resource) {
-      const tempResource = this.state.sections;
-      console.log(tempResource, subject);
-      //debugger;
-      tempResource[subject].resources.push(resource);
-      this.setState(tempResource);
+    updateResource(index, resource) {
+      const tempResources = this.state.sections;
+      
+      tempResources[index].resources.push(resource);
+      updateSections(tempResources);
     }
     
 
