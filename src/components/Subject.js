@@ -11,12 +11,14 @@ export default class Section extends Component {
              showLinks: true,
              title: '',
              url: '',
+             showDelete: false
 
          }
 
          this.handleAddClick = this.handleAddClick.bind(this);
          this.handleLinkToggle = this.handleLinkToggle.bind(this);
          this.handleTyping = this.handleTyping.bind(this);
+         this.handleDeleteClick = this.handleDeleteClick.bind(this);
              
     };
     
@@ -49,27 +51,36 @@ export default class Section extends Component {
             url: ''
         })
     }
+
+    handleDeleteClick = (e) => {
+        const subjectIndex = this.props.index;
+        const resourceIndex = e.target.id;
+        console.log(subjectIndex, resourceIndex);
+        //debugger;
+
+    }
+
     //event handlers
     render() {
         const ulStyle = {
-            'list-style': 'none',
+            listStyle: 'none',
             padding: 0
         }
         const liStyle = {
-            'padding-left': '20px'
+            paddingLeft: '20px'
         }
         const iStyle = {
-            'padding': '5px'
+            padding: '5px'
         }
         
         const heading = <h3><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
         const content = 
         <div hidden={this.state.showLinks}>
             <ul style={ulStyle}>
-                {this.props.items.resources.map(resource => {
+                {this.props.items.resources.map((resource, index) => {
                     return (
-                        <li style={liStyle} key={resource.title + resource.url} >
-                            <i className="fa fa-times" aria-hidden="true" style={iStyle}></i>
+                        <li style={liStyle} key={resource.title + resource.url}>
+                            <i id={index} className="fa fa-times" aria-hidden="true" style={iStyle} onClick={this.handleDeleteClick} title="Delete"></i>
                             <a href={resource.url}>
                                 {resource.title}
                             </a>
