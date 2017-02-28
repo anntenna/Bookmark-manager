@@ -53,12 +53,15 @@ export default class Section extends Component {
     }
 
     handleDeleteClick = (e) => {
+        debugger;
         const subjectIndex = this.props.index;
-        const resourceIndex = e.target.id;
-        //console.log(subjectIndex, resourceIndex);
-        this.props.deleteResource(subjectIndex, resourceIndex);
-        //debugger;
-
+        if(e.target.id === "deleteSubject") {
+            this.props.deleteSubject(subjectIndex);
+        }
+        else {
+            const resourceIndex = e.target.id;
+            this.props.deleteResource(subjectIndex, resourceIndex);
+        }
     }
 
     //event handlers
@@ -74,7 +77,7 @@ export default class Section extends Component {
             padding: '5px'
         }
         
-        const heading = <h3><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
+        const heading = <h3><i id="deleteSubject" className="fa fa-times" aria-hidden="true" style={iStyle} onClick={this.handleDeleteClick} title="Delete"></i><span onClick={this.handleLinkToggle}>{this.props.items.subject}</span></h3>;
         const content = 
         <div hidden={this.state.showLinks}>
             <div className="form-group"> 
